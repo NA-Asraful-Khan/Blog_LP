@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { increment } from "../store/slices/notificationSlice";
 import type { Post } from "../store/services/blogApi";
-import { CalendarDaysIcon } from "lucide-react";
+import { CalendarDaysIcon, Eye } from "lucide-react";
 
 interface BlogCardProps {
   post: Post;
@@ -37,8 +37,11 @@ export default function BlogCard({ post, index }: BlogCardProps) {
     return date.toLocaleDateString("en-US", options);
   }
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
-      <div className="aspect-w-16 aspect-h-9">
+    <div className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col relative">
+      <span className="absolute top-2 right-2 z-50 flex bg-white rounded p-1 gap-2">
+        <Eye size={24} /> {Math.floor(Math.random() * 90) + 10}
+      </span>
+      <div className="aspect-w-16 aspect-h-9 ">
         <img
           src={post.image}
           alt={post.title}
