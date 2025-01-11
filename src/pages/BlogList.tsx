@@ -1,18 +1,19 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import InfiniteScroll from 'react-infinite-scroll-component';
-import { useGetPostsQuery } from '../store/services/blogApi';
-import BlogCard from '../components/BlogCard';
-import SearchBar from '../components/SearchBar';
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { useGetPostsQuery } from "../store/services/blogApi";
+import BlogCard from "../components/BlogCard";
+import SearchBar from "../components/SearchBar";
 
 export default function BlogList() {
   const { data: posts = [], isLoading } = useGetPostsQuery();
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [displayCount, setDisplayCount] = useState(6);
 
-  const filteredPosts = posts.filter(post =>
-    post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    post.content.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredPosts = posts.filter(
+    (post) =>
+      post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.content.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const displayedPosts = filteredPosts.slice(0, displayCount);
@@ -26,14 +27,17 @@ export default function BlogList() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 min-h-screen">
-      <SearchBar searchTerm={searchTerm} onSearch={setSearchTerm} />
-      
+    <div className="px-4 sm:px-6 lg:px-8 py-12 min-h-screen">
+      <div className="md:flex justify-between items-center text-center mb-8">
+        <h3 className="text-4xl">Placeholder Posts</h3>
+        <SearchBar searchTerm={searchTerm} onSearch={setSearchTerm} />
+      </div>
+
       <InfiniteScroll
         dataLength={displayedPosts.length}
         next={() => {
           setTimeout(() => {
-            setDisplayCount(prev => prev + 4);
+            setDisplayCount((prev) => prev + 4);
           }, 500);
         }}
         hasMore={displayedPosts.length < filteredPosts.length}
@@ -43,13 +47,17 @@ export default function BlogList() {
               className="text-gray-600 text-lg"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
+              transition={{
+                duration: 0.5,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
             >
               More Posts Loading . . .
             </motion.p>
           </div>
         }
-        style={{ overflow: 'hidden' }}
+        style={{ overflow: "hidden" }}
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 auto-rows-fr"
       >
         <AnimatePresence mode="popLayout">
@@ -63,7 +71,7 @@ export default function BlogList() {
               transition={{
                 opacity: { duration: 0.3 },
                 layout: { duration: 0.3 },
-                scale: { duration: 0.3 }
+                scale: { duration: 0.3 },
               }}
             >
               <BlogCard post={post} index={index} />
