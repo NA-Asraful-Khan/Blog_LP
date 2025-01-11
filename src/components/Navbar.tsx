@@ -27,21 +27,27 @@ export default function Navbar() {
           </Link>
 
           <div className="flex items-center gap-4">
-            <div className="relative bg-[#D9D9D933] h-[55px]  p-2 rounded text-black">
-              <div className="flex">
+            <div className="relative bg-[#D9D9D933] p-4 rounded text-black">
+              <div className="flex justify-center items-center">
                 <span className="mr-2">Bell Counter</span>
-                <BellRing className="h-6 w-6" />
+                <span>
+                  <BellRing className="h-6 w-6" />
+                  {notificationCount > 0 && (
+                    <motion.span
+                      className="absolute -top-1 -right-1  text-sm font-bold rounded-full h-5 w-5 flex items-center justify-center"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 30,
+                      }}
+                    >
+                      {notificationCount}
+                    </motion.span>
+                  )}
+                </span>
               </div>
-              {notificationCount > 0 && (
-                <motion.span
-                  className="absolute -top-1 -right-1  text-sm font-bold rounded-full h-5 w-5 flex items-center justify-center"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                >
-                  {notificationCount}
-                </motion.span>
-              )}
             </div>
             <button className="text-[#1E1E1E] hover:text-black h-[32px] w-[152px] bg-[#E3E3E3] border border-[#767676] rounded-md">
               Sign in

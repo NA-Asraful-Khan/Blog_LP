@@ -53,7 +53,9 @@ export default function BlogCard({ post, index }: BlogCardProps) {
           </span>
         </div>
         <h2 className="mt-2 text-xl font-semibold text-gray-900 flex-grow">
-          {post.title}
+          {post.title.length > 40
+            ? `${post.title.substring(0, 40)}...`
+            : post.title}
         </h2>
         <div>
           <span className="mt-2 text-gray-600">
