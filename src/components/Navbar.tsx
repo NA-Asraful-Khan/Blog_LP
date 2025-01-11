@@ -34,7 +34,7 @@ export default function Navbar() {
                   <BellRing className="h-6 w-6" />
                   {notificationCount > 0 && (
                     <motion.span
-                      className="absolute -top-1 -right-1  text-sm font-bold rounded-full h-5 w-5 flex items-center justify-center"
+                      className="absolute -top-0 -right-0  text-sm font-bold rounded-full h-5 w-5 flex items-center justify-center"
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{

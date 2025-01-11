@@ -8,7 +8,7 @@ import SearchBar from "../components/SearchBar";
 export default function BlogList() {
   const { data: posts = [], isLoading } = useGetPostsQuery();
   const [searchTerm, setSearchTerm] = useState("");
-  const [displayCount, setDisplayCount] = useState(10);
+  const [displayCount, setDisplayCount] = useState(6);
 
   const filteredPosts = posts.filter(
     (post) =>
