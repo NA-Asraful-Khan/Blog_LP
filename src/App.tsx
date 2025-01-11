@@ -4,6 +4,7 @@ import { store } from "./store/store";
 import Navbar from "./components/Navbar";
 import BlogList from "./pages/BlogList";
 import BlogPost from "./pages/BlogPost";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Routes>
             <Route path="/" element={<BlogList />} />
             <Route path="/post/:id" element={<BlogPost />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
       </Router>

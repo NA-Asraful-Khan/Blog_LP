@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { increment } from "../store/slices/notificationSlice";
 import type { Post } from "../store/services/blogApi";
 import { CalendarDaysIcon } from "lucide-react";
@@ -13,8 +13,12 @@ interface BlogCardProps {
 export default function BlogCard({ post, index }: BlogCardProps) {
   const dispatch = useDispatch();
 
-  const handleClick = () => {
+  const navigate = useNavigate();
+
+  const handleNavigation = (id: number) => {
     dispatch(increment());
+    navigate(`/post/${id}`);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   function convertToReadableDate(publish: string) {
@@ -63,13 +67,12 @@ export default function BlogCard({ post, index }: BlogCardProps) {
               ? `${post.content.substring(0, 200)}....`
               : post.content}
           </span>
-          <Link
-            to={`/post/${post.id}`}
+          <button
             className="text-blue-600 hover:text-blue-800 font-medium ml-2"
-            onClick={handleClick}
+            onClick={() => handleNavigation(post.id)}
           >
             Read More
-          </Link>
+          </button>
         </div>
       </div>
     </div>
