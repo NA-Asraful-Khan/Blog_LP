@@ -38,7 +38,7 @@ export default function BlogCard({ post, index }: BlogCardProps) {
   }
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col relative">
-      <span className="absolute top-2 right-2 z-50 flex bg-white rounded p-1 gap-2">
+      <span className="absolute top-2 right-2 z-10 flex bg-white rounded p-1 gap-2">
         <Eye size={24} /> {Math.floor(Math.random() * 90) + 10}
       </span>
       <div className="aspect-w-16 aspect-h-9 ">
@@ -66,8 +66,8 @@ export default function BlogCard({ post, index }: BlogCardProps) {
         </h2>
         <div>
           <span className="mt-2 text-gray-600">
-            {post.content.length > 200
-              ? `${post.content.substring(0, 200)}....`
+            {post.content.length > 240
+              ? `${post.content.substring(0, 240)}....`
               : post.content}
           </span>
           <button
