@@ -8,7 +8,7 @@ import SearchBar from "../components/SearchBar";
 export default function BlogList() {
   const { data: posts = [], isLoading } = useGetPostsQuery();
   const [searchTerm, setSearchTerm] = useState("");
-  const [displayCount, setDisplayCount] = useState(6);
+  const [displayCount, setDisplayCount] = useState(10);
 
   const filteredPosts = posts.filter(
     (post) =>
@@ -36,7 +36,7 @@ export default function BlogList() {
         <InfiniteScroll
           dataLength={displayedPosts.length}
           next={() => {
-            setDisplayCount((prev) => Math.min(prev + 4, filteredPosts.length));
+            setDisplayCount((prev) => Math.min(prev + 6, filteredPosts.length));
           }}
           hasMore={displayedPosts.length < filteredPosts.length}
           loader={
@@ -55,7 +55,7 @@ export default function BlogList() {
               </motion.p>
             </div>
           }
-          scrollThreshold={0.8}
+          scrollThreshold={0.5}
           style={{ overflow: "auto", height: "auto" }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-20 auto-rows-fr"
         >
